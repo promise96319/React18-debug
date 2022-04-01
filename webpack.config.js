@@ -14,8 +14,6 @@ const generateReactAlias = () => {
   return alias
 }
 
-console.log('generateReactAlias() ==> ', generateReactAlias())
-
 module.exports = {
   entry: ['./src/index.js'],
   module: {
