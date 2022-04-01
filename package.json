@@ -1,0 +1,39 @@
+{
+  "name": "react18-debug",
+  "version": "1.0.0",
+  "description": "debug the source code of react",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "dev": "webpack-dev-server --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/promise96319/React18-debug.git"
+  },
+  "keywords": [
+    "react",
+    "v18",
+    "debug"
+  ],
+  "author": "promise96319",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/promise96319/React18-debug/issues"
+  },
+  "homepage": "https://github.com/promise96319/React18-debug#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-flow": "^7.16.7",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.4",
+    "eslint": "^8.12.0",
+    "eslint-plugin-react": "^7.29.4",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  }
+}
