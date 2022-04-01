@@ -1,15 +1,23 @@
 import React, { Suspense } from 'react'
 import { request } from './utils/api'
-// const OtherComponent = React.lazy(() => import('./counter'))
+import { unstable_createResource } from 'react-cache'
 
-const OtherComponent = () => {
-  const data = request('world')
-  return <div>{data}</div>
+const data = unstable_createResource((data) => request(data))
+
+const AsyncComponent = () => {
+  const res = data.read(10000)
+  return (
+    <ul>
+      {new Array(res).fill(0).map((_, i) => (
+        <li key={i}>{i}</li>
+      ))}
+    </ul>
+  )
 }
 
 const SuspenseComp = () => (
   <Suspense fallback={<div>Loading...</div>}>
-    <OtherComponent />
+    <AsyncComponent />
   </Suspense>
 )
 
