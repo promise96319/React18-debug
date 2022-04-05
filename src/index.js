@@ -4,6 +4,7 @@ import Suspense from './suspense'
 import Batch from './batch'
 import Defer from './defer'
 import Transition from './transition'
+import Counter from './counter'
 
 const App = () => (
   <div>
@@ -11,7 +12,8 @@ const App = () => (
     {/* <Batch></Batch> */}
     {/* <Suspense></Suspense> */}
     {/* <Defer></Defer> */}
-    <Transition></Transition>
+    {/* <Transition></Transition> */}
+    <Counter></Counter>
     <footer>updated at 2022</footer>
   </div>
 )
