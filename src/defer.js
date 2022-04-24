@@ -2,9 +2,7 @@ import React, { useState, useDeferredValue } from 'react'
 
 const Defer = () => {
   const [searchValue, setSearchValue] = useState(100)
-  const deferredSearchValue = useDeferredValue(searchValue, {
-    timeoutMs: 1000,
-  })
+  const deferredSearchValue = useDeferredValue(searchValue)
 
   return (
     <>

@@ -10,73 +10,73 @@
 import {
   getInstanceFromNode,
   getFiberCurrentPropsFromNode,
-} from '../client/ReactDOMComponentTree';
+} from '../client/ReactDOMComponentTree'
 
 // Use to restore controlled state after a change event has fired.
 
-let restoreImpl = null;
-let restoreTarget = null;
-let restoreQueue = null;
+let restoreImpl = null
+let restoreTarget = null
+let restoreQueue = null
 
 function restoreStateOfTarget(target: Node) {
   // We perform this translation at the end of the event loop so that we
   // always receive the correct fiber here
-  const internalInstance = getInstanceFromNode(target);
+  const internalInstance = getInstanceFromNode(target)
   if (!internalInstance) {
     // Unmounted
-    return;
+    return
   }
 
   if (typeof restoreImpl !== 'function') {
     throw new Error(
       'setRestoreImplementation() needs to be called to handle a target for controlled ' +
-        'events. This error is likely caused by a bug in React. Please file an issue.',
-    );
+        'events. This error is likely caused by a bug in React. Please file an issue.'
+    )
   }
 
-  const stateNode = internalInstance.stateNode;
+  const stateNode = internalInstance.stateNode
   // Guard against Fiber being unmounted.
   if (stateNode) {
-    const props = getFiberCurrentPropsFromNode(stateNode);
-    restoreImpl(internalInstance.stateNode, internalInstance.type, props);
+    const props = getFiberCurrentPropsFromNode(stateNode)
+    restoreImpl(internalInstance.stateNode, internalInstance.type, props)
   }
 }
 
 export function setRestoreImplementation(
-  impl: (domElement: Element, tag: string, props: Object) => void,
+  impl: (domElement: Element, tag: string, props: Object) => void
 ): void {
-  restoreImpl = impl;
+  restoreImpl = impl
 }
 
 export function enqueueStateRestore(target: Node): void {
   if (restoreTarget) {
     if (restoreQueue) {
-      restoreQueue.push(target);
+      restoreQueue.push(target)
     } else {
-      restoreQueue = [target];
+      restoreQueue = [target]
     }
   } else {
-    restoreTarget = target;
+    restoreTarget = target
   }
 }
 
 export function needsStateRestore(): boolean {
-  return restoreTarget !== null || restoreQueue !== null;
+  return restoreTarget !== null || restoreQueue !== null
 }
 
 export function restoreStateIfNeeded() {
   if (!restoreTarget) {
-    return;
+    return
   }
-  const target = restoreTarget;
-  const queuedTargets = restoreQueue;
-  restoreTarget = null;
-  restoreQueue = null;
+  const target = restoreTarget
+  const queuedTargets = restoreQueue
+  restoreTarget = null
+  restoreQueue = null
 
-  restoreStateOfTarget(target);
+  restoreStateOfTarget(target)
   if (queuedTargets) {
     for (let i = 0; i < queuedTargets.length; i++) {
-      restoreStateOfTarget(queuedTargets[i]);
+      restoreStateOfTarget(queuedTargets[i])
     }
   }
 }

@@ -55,7 +55,7 @@ module.exports = {
     new DefinePlugin({
       __DEV__: true,
       __PROFILE__: false,
-      __EXPERIMENTAL__: false,
+      __EXPERIMENTAL__: true,
       __UMD__: true,
     }),
   ],

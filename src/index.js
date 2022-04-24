@@ -11,9 +11,9 @@ const App = () => (
     <header>React v18.0.0</header>
     {/* <Batch></Batch> */}
     {/* <Suspense></Suspense> */}
-    {/* <Defer></Defer> */}
+    <Defer></Defer>
     {/* <Transition></Transition> */}
-    <Counter></Counter>
+    {/* <Counter></Counter> */}
     <footer>updated at 2022</footer>
   </div>
 )

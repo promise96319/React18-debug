@@ -1,10 +1,8 @@
-import React, { useState, useTransition } from 'react'
+import React, { useState, useTransition, Suspense } from 'react'
 
 const Transition = () => {
   const [searchValue, setSearchValue] = useState(100)
-  const [isPending, startTransition] = useTransition({
-    timeoutMs: 1000,
-  })
+  const [isPending, startTransition] = useTransition()
 
   return (
     <>
@@ -21,11 +19,11 @@ const Transition = () => {
       {isPending ? (
         <div>loading...</div>
       ) : (
-        <>
+        <div>
           {new Array(searchValue).fill(0).map((_, idx) => (
             <li key={idx}>{idx}</li>
           ))}
-        </>
+        </div>
       )}
     </>
   )
